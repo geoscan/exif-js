@@ -368,11 +368,11 @@
     function getImageData(img, callback) {
         function handleBinaryFile(binFile) {
             var data = findEXIFinJPEG(binFile);
-            var iptcdata = findIPTCinJPEG(binFile);
-            var xmpdata= findXMPinJPEG(binFile);
+//            var iptcdata = findIPTCinJPEG(binFile);
+//            var xmpdata= findXMPinJPEG(binFile);
             img.exifdata = data || {};
-            img.iptcdata = iptcdata || {};
-            img.xmpdata = xmpdata || {};
+//            img.iptcdata = iptcdata || {};
+//            img.xmpdata = xmpdata || {};
             if (callback) {
                 callback.call(img);
             }
@@ -411,8 +411,9 @@
                 if (debug) console.log("Got file of length " + e.target.result.byteLength);
                 handleBinaryFile(e.target.result);
             };
-
-            fileReader.readAsArrayBuffer(img);
+            //cut first 300kB of data and pray god it is enough
+            var blob = img.slice(0, 400000);
+            fileReader.readAsArrayBuffer(blob);
         }
     }
 
