@@ -369,10 +369,10 @@
         function handleBinaryFile(binFile) {
             var data = findEXIFinJPEG(binFile);
 //            var iptcdata = findIPTCinJPEG(binFile);
-//            var xmpdata= findXMPinJPEG(binFile);
+            var xmpdata= findXMPinJPEG(binFile);
             img.exifdata = data || {};
 //            img.iptcdata = iptcdata || {};
-//            img.xmpdata = xmpdata || {};
+            img.xmpdata = xmpdata || {};
             if (callback) {
                 callback.call(img);
             }
